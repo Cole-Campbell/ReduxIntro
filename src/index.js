@@ -1,10 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import YTSearch from 'youtube-api-search';
 
 //Need to give file reference for files
 import SearchBar from './components/search_bar';
 
-import API_KEY from './services/youtube-api';
+import YTKey from './services/youtube-api';
+
+YTSearch({key: YTKey, term: 'Cats'}, function (data) {
+  console.log(data);
+});
 
 // Create a new component. This should produce HTML
 //ES6 Syntax
