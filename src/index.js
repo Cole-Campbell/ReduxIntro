@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const API_KEY = 'AIzaSyASsCqe8o9ilxeCJHFA4jy3DABa5cBLu6I';
+//Need to give file reference for files
+import SearchBar from './components/search_bar';
+
+import API_KEY from './services/youtube-api';
 
 // Create a new component. This should produce HTML
 //ES6 Syntax
