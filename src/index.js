@@ -9,8 +9,11 @@ import API_KEY from './services/youtube-api';
 // Create a new component. This should produce HTML
 //ES6 Syntax
 const App = () => {
-  return <div>HI!</div>;
-  
+  return (
+    <div>
+      <SearchBar />
+    </div>
+  );
 }
 
 // Render the component to the DOM
