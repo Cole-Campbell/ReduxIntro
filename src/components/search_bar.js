@@ -21,19 +21,24 @@ class SearchBar extends Component{
     super(props);
 
     //ID Can be set to anything. Only change State in Constructor.
-    this.state = { term: 'Hello' };
+    this.state = { term: '' };
   }
 
   render() {
     //Manipulating State by setState
     return (
-      <div>
+      <div className="search-bar">
         <input 
           //Is now a controlled component as the value is now set by the state, and not set by the value.
           value={this.state.term}
-          onChange = {e => this.setState({ term: e.target.value })} />
+          onChange = {e => this.onInputChange(e.target.value)} />
       </div>
-    )
+    );
+  }
+
+  onInputChange(term) {
+    this.setState({term});
+    this.props.onSearchTermChange(term);
   }
 
   /*Method for change. Method condensed into class with Arrow Function

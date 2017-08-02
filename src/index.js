@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search';
+import _ from 'lodash';
 
 //Need to give file reference for files
 import SearchBar from './components/search_bar';
@@ -16,26 +17,35 @@ class App extends Component {
 
     this.state = {
       videos: [],
-      selectedVideo: null
+      selectedVideo: null,
     };
 
-    YTSearch({key: YTKey, term: 'Cats'}, (videos) => {
+    this.videoSearch('Cats');
+  }
+  
+  videoSearch(term) {
+      YTSearch({key: YTKey, term: term}, (videos) => {
       this.setState({
         videos: videos,
         selectedVideo: videos[0]
       });
     });
   }
+  
+
   render() {
-  return (
-    <div>
-      <SearchBar />
-      <VideoDetail video={this.state.selectedVideo} />
-      <VideoList 
-      videos={this.state.videos}
-      onVideoSelect = {selectedVideo => this.setState({selectedVideo})} />
-    </div>
-  )};
+    const videoSearch =_.debounce((term) => {this.videoSearch(term)}, 800);
+
+    return (
+      <div>
+        <SearchBar onSearchTermChange={videoSearch} />
+        <VideoDetail video={this.state.selectedVideo} />
+        <VideoList 
+        videos={this.state.videos}
+        onVideoSelect = {selectedVideo => this.setState({selectedVideo}) } />
+      </div>
+    );
+  }
 }
 //Data is being passed through the use of PROPS
 
